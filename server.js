@@ -93,6 +93,19 @@ app.get('/pagecount', function(req, res) {
     }
 });
 
+app.get('/card', function(req, res) {
+    // try to initialize the db on every request if it's not already
+    // initialized.
+    if (!db) {
+        initDb(function(err) {});
+    }
+    if (db) {
+        db.collection('products').insert({ item: "card", qty: 15 });
+    } else {
+        //res.send('{ pageCount: -1 }');
+    }
+});
+
 
 // error handling
 app.use(function(err, req, res, next) {
