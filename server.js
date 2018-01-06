@@ -1,6 +1,6 @@
-var app = require('./app');
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var ip = ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var app     = require('./app');
+var port    = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip      = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 //
 var server = app.listen(port, ip);
 console.log('-------------------------------------abc');
