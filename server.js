@@ -33,35 +33,6 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
     }
 }
 
-var db = null,
-    dbDetails = new Object();
-
-var initDb = function(callback) {
-    if (mongoURL == null) return;
-
-    var mongodb = require('mongodb');
-    if (mongodb == null) return;
-
-    mongodb.connect(mongoURL, function(err, conn) {
-        if (err) {
-            callback(err);
-            return;
-        }
-
-        db = conn;
-        dbDetails.databaseName = db.databaseName;
-        dbDetails.url = mongoURLLabel;
-        dbDetails.type = 'MongoDB';
-
-        console.log('Connected to MongoDB at: %s', mongoURL);
-    });
-};
-
-app.get('/', function(req, res) {
-    // try to initialize the db on every request if it's not already
-    // initialized.
-});
-
 
 var db = require('./db');
 
@@ -71,7 +42,11 @@ app.use('/users', UserController);
 var ProductController = require('./product/ProductController');
 app.use('/products', ProductController);
 
-
+app.get('/', function(req, res) {
+    // try to initialize the db on every request if it's not already
+    // initialized.
+    res.render('index.html');
+});
 
 // error handling
 app.use(function(err, req, res, next) {
@@ -79,9 +54,6 @@ app.use(function(err, req, res, next) {
     res.status(500).send('Something bad happened!');
 });
 
-initDb(function(err) {
-    console.log('Error connecting to Mongo. Message:\n' + err);
-});
 
 app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
