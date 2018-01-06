@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var db = require('./db');
+var morgan = require('morgan');
 
 Object.assign = require('object-assign')
 
