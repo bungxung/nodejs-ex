@@ -35,7 +35,8 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 
 
 var db = require('./db');
-
+var pageCountMessage = null;
+//
 var UserController = require('./user/UserController');
 app.use('/users', UserController);
 
@@ -45,7 +46,7 @@ app.use('/products', ProductController);
 app.get('/', function(req, res) {
     // try to initialize the db on every request if it's not already
     // initialized.
-    res.render('index.html');
+    res.render('index.html', { pageCountMessage: null });
 });
 
 // error handling
