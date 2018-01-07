@@ -8,9 +8,9 @@ var Product = require('./Product');
 // CREATES A NEW Product
 router.post('/', function(req, res) {
     Product.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
+            name:   req.body.name,
+            price:  req.body.price,
+            amount: req.body.amount
         },
         function(err, product) {
             if (err) return res.status(500).send("There was a problem adding the information to the database.");
