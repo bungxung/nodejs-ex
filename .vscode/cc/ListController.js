@@ -3,7 +3,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 
 router.use(bodyParser.urlencoded({ extended: true }));
-var User = require('./List');
+var List = require('./List');
 
 // CREATES A NEW LIST
 router.post('/', function (req, res) {

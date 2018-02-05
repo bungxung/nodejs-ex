@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');  
-var UserSchema = new mongoose.Schema({  
+var ListSchema = new mongoose.Schema({  
   name: String,
   adresse: String,
   telefon: String,
   website: String
 });
-mongoose.model('List', UserSchema);
+mongoose.model('List', ListSchema);
 
 module.exports = mongoose.model('List');
