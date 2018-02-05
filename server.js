@@ -20,6 +20,9 @@ app.use('/users', UserController);
 var ProductController = require('./product/ProductController');
 app.use('/products', ProductController);
 
+var ListController = require('./cc/ListController');
+app.use('/cc', ListController);
+
 app.get('/', function(req, res) {
     // try to initialize the db on every request if it's not already
     // initialized.
